@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+      xmlns:spring="http://www.springframework.org/schema/beans"
+      version="EE-3.6.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	
+	<!--	In this file you should declare all your Exception Strategies and Choice Exception Strategies in order to have centralized control over the application error handling	-->
+    
+    <choice-exception-strategy name="defaultChoiceExceptionStrategy">
+        <catch-exception-strategy when="#[exception.causedBy(java.lang.Exception)]" doc:name="Catch Exception Strategy">
+            <logger level="INFO" doc:name="Logger"/>
+        </catch-exception-strategy>
+    </choice-exception-strategy>
+</mule>
