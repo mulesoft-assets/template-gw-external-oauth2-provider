@@ -80,7 +80,11 @@ In order to use this Mule Anypoint Template you need to configure properties (Cr
 + endpoint.https.port `9082`
 
 **Environment related properties**
-+ property1 `example1`
++ key.store.password `mule1234`
++ key.store.key.password `mule1234`
++ key.store.path `keystore.jks`
++ admin.name `admin`
++ admin.password `pass`
 
 # Customize It!<a name="customizeit"/>
 This brief guide intends to give a high level idea of how this Anypoint Template is built and how you can change it according to your needs.
