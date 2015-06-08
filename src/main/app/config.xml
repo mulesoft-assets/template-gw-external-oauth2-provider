@@ -10,7 +10,6 @@ xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
 xmlns:jetty="http://www.mulesoft.org/schema/mule/jetty"
 xmlns:json="http://www.mulesoft.org/schema/mule/json" 
 xmlns="http://www.mulesoft.org/schema/mule/core" 
-xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" 
 xmlns:context="http://www.springframework.org/schema/context" 
 xmlns:core="http://www.mulesoft.org/schema/mule/core" 
 xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" 
@@ -27,7 +26,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
@@ -68,7 +66,7 @@ http://www.mulesoft.org/schema/mule/api-platform-gw http://www.mulesoft.org/sche
     </tls:context>
         
     <oauth2-provider:config 
-        name="external-oauth2-provider" 
+        name="external-oauth2-provider"
         providerName="Ping API" 
         resourceOwnerSecurityProvider-ref="single-user-security-provider" 
         clientSecurityProvider-ref="single-user-client-security-provider" 
@@ -76,8 +74,8 @@ http://www.mulesoft.org/schema/mule/api-platform-gw http://www.mulesoft.org/sche
         scopes="READ WRITE"
         defaultScopes="READ WRITE" 
         supportedGrantTypes="AUTHORIZATION_CODE RESOURCE_OWNER_PASSWORD_CREDENTIALS CLIENT_CREDENTIALS IMPLICIT" 
-        authorizationEndpointPath="aes/external/authorize" 
-        accessTokenEndpointPath="aes/external/access-token" 
+        authorizationEndpointPath="${authorization.endpoint.path}" 
+        accessTokenEndpointPath="${access.token.endpoint.path}" 
         tokenTtlSeconds="86400" 
         enableRefreshToken="true"
         listenerConfig-ref="https.listener">

@@ -85,6 +85,9 @@ In order to use this Mule Anypoint Template you need to configure properties (Cr
 + key.store.path `keystore.jks`
 + admin.name `admin`
 + admin.password `pass`
++ validate.endpoint.path `aes/external/validate`
++ authorization.endpoint.path `aes/external/authorize`
++ access.token.endpoint.path `aes/external/access-token`
 
 # Customize It!<a name="customizeit"/>
 This brief guide intends to give a high level idea of how this Anypoint Template is built and how you can change it according to your needs.
