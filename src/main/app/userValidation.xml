@@ -73,7 +73,7 @@ http://www.mulesoft.org/schema/mule/spring-security http://www.mulesoft.org/sche
     <http:listener-config name="https.listener" protocol="HTTPS" host="0.0.0.0" port="${https.port}" doc:name="HTTPs Listener Configuration" tlsContext-ref="tls.context.listener" />   
     
     <flow name="validateTokenFlow">
-        <http:listener config-ref="https.listener" path="${validate.path}" doc:name="HTTP"/>
+        <http:listener config-ref="https.listener" path="${validate.endpoint.path}" doc:name="HTTP"/>
         <oauth2-provider:validate config-ref="external-oauth2-provider" scopes="READ"/>
         <custom-processor class="com.mulesoft.module.oauth2.ValidatorResponseBuilder"/>
     </flow>
