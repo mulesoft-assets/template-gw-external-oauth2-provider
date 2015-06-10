@@ -83,8 +83,13 @@ In order to use this Mule Anypoint Template you need to configure properties (Cr
 + key.store.password `mule1234`
 + key.store.key.password `mule1234`
 + key.store.path `keystore.jks`
-+ admin.name `admin`
-+ admin.password `pass`
+
++ ldap.userDn `<User DN>`
++ ldap.password `<pass>`
++ ldap.url `<ldaps URL here>`
++ ldap.user.search.filter.1 `<eg ou=people,dc=muleforge,dc=org>`
++ ldap.user.search.filter.2 `<eg (uid={0})>`
+
 + validate.endpoint.path `aes/external/validate`
 + authorization.endpoint.path `aes/external/authorize`
 + access.token.endpoint.path `aes/external/access-token`

@@ -9,6 +9,7 @@ xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 xmlns:spring="http://www.springframework.org/schema/beans" 
 xmlns:ss="http://www.springframework.org/schema/security"
 xmlns:mule-ss="http://www.mulesoft.org/schema/mule/spring-security"
+xmlns:oauth2-provider="http://www.mulesoft.org/schema/mule/oauth2-provider"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 version="EE-3.7.0"
 xsi:schemaLocation="
@@ -17,19 +18,60 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
 http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+http://www.mulesoft.org/schema/mule/oauth2-provider http://www.mulesoft.org/schema/mule/oauth2-provider/current/mule-oauth2-provider.xsd
 http://www.mulesoft.org/schema/mule/spring-security http://www.mulesoft.org/schema/mule/spring-security/current/mule-spring-security.xsd">
 
-	<!-- Simple security provider - Single user authentication -->
+	<!-- LDAP Validation Config -->
+     <spring:beans>
+        <spring:bean id="multiple-users-ldap-context-source" class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
+            <spring:constructor-arg value="${ldap.url}"/>
+            <spring:property name="userDn" value="${ldap.userDn}"/>
+            <spring:property name="password" value="${ldap.password}"/>
+            <spring:property name="baseEnvironmentProperties">
+                <spring:map>
+                    <spring:entry key="java.naming.ldap.version" value="3"/>
+                    <spring:entry key="com.sun.jndi.ldap.connect.pool" value="true"/>
+                    <spring:entry key="com.sun.jndi.ldap.connect.pool.maxsize" value="10"/>
+                    <spring:entry key="com.sun.jndi.ldap.connect.pool.prefsize" value="5"/>
+                    <spring:entry key="com.sun.jndi.ldap.connect.pool.initsize" value="3"/>
+                    <spring:entry key="com.sun.jndi.ldap.connect.timeout" value="10000"/>
+                    <spring:entry key="com.sun.jndi.ldap.connect.pool.timeout" value="60000"/>
+                    <spring:entry key="com.sun.jndi.ldap.connect.pool.protocol" value="plain"/>
+                </spring:map>
+            </spring:property>
+        </spring:bean>
+
+        <spring:bean id="multiple-users-ldap-user-search" class="org.springframework.security.ldap.search.FilterBasedLdapUserSearch">
+            <spring:constructor-arg index="0" value="${ldap.user.search.filter.1}"/>
+            <spring:constructor-arg index="1" value="${ldap.user.search.filter.2}"/>
+            <spring:constructor-arg index="2" ref="multiple-users-ldap-context-source"/>
+            <spring:property name="searchSubtree" value="false"/>
+        </spring:bean>
+
+        <spring:bean id="multiple-users-ldap-auth-provider" class="org.springframework.security.ldap.authentication.LdapAuthenticationProvider">
+            <spring:constructor-arg>
+                <spring:bean class="org.springframework.security.ldap.authentication.BindAuthenticator">
+                    <spring:constructor-arg ref="multiple-users-ldap-context-source"/>
+                    <spring:property name="userSearch" ref="multiple-users-ldap-user-search"/>
+                </spring:bean>
+            </spring:constructor-arg>
+        </spring:bean>
     
-    <spring:beans xmlns:spring="http://www.springframework.org/schema/beans" xmlns:ss="http://www.springframework.org/schema/security">
-        <ss:authentication-manager alias="single-user-authentication-manager">
-          <ss:authentication-provider>
-            <ss:user-service id="userService">
-              <ss:user name="${admin.name}" password="${admin.password}" authorities="ROLE_ADMIN"/>
-            </ss:user-service>
-          </ss:authentication-provider>
+        <ss:authentication-manager id="multiple-users-authentication-manager" alias="ldapAuthManager">
+            <ss:authentication-provider ref="multiple-users-ldap-auth-provider"/>
         </ss:authentication-manager>
     </spring:beans>
-    
 
+	<!-- Validation endpoint -->
+    <tls:context name="tls.context.listener" doc:name="TLS Context">
+	    <tls:key-store path="${key.store.path}" password="${key.store.password}" keyPassword="${key.store.key.password}"/>
+    </tls:context>
+
+    <http:listener-config name="https.listener" protocol="HTTPS" host="0.0.0.0" port="${https.port}" doc:name="HTTPs Listener Configuration" tlsContext-ref="tls.context.listener" />   
+    
+    <flow name="validateTokenFlow">
+        <http:listener config-ref="https.listener" path="${validate.path}" doc:name="HTTP"/>
+        <oauth2-provider:validate config-ref="external-oauth2-provider" scopes="READ"/>
+        <custom-processor class="com.mulesoft.module.oauth2.ValidatorResponseBuilder"/>
+    </flow>
 </mule>
