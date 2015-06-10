@@ -1,8 +1,9 @@
-# Anypoint Template: API Gateway External OAuth2 Provider
+# Anypoint Template: API Gateway External OAuth2 Provider with LDAP validation
 
 + [License Agreement](#licenseagreement)
 + [Use Case](#usecase)
 + [Considerations](#considerations)
+	* [LDAP Configuration](#ldapconfig)
 + [Run it!](#runit)
 	* [Running on premise](#runonopremise)
 	* [Running on Studio](#runonstudio)
@@ -26,6 +27,9 @@ Template use case description
 
 # Considerations <a name="considerations"/>
 Template considerations
+
+## LDAP configuration <a name="ldapconfig"/>
+LDAP Configuration
 
 # Run it! <a name="runit"/>
 Simple steps to get API Gateway External OAuth2 Provider running.

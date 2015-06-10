@@ -4,10 +4,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mule.templates</groupId>
-	<artifactId>template-gw-external-oauth2-provider</artifactId>
+	<artifactId>template-gw-external-oauth2-provider-ldap</artifactId>
 	<packaging>mule</packaging>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>Template Gateway External OAuth2 Provider Anypoint Template Project</name>
+	<name>Template Gateway External OAuth2 Provider with LDAP Validation Anypoint Template Project</name>
 
 	<properties>
 		<mule.version>3.6.2</mule.version>
