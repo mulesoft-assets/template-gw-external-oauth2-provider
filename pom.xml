@@ -305,6 +305,22 @@
 			<layout>default</layout>
 		</repository>
 	</repositories>	
+
+	<pluginRepositories>
+        <pluginRepository>
+            <id>mulesoft-releases</id>
+            <name>MuleSoft Releases Repository</name>
+            <url>https://repository.mulesoft.org/nexus/content/repositories/releases/</url>
+            <layout>default</layout>
+        </pluginRepository>
+        <pluginRepository>
+            <id>mulesoft-snapshots</id>
+            <name>MuleSoft Snapshots Repository</name>
+            <url>https://repository.mulesoft.org/nexus/content/repositories/snapshots/</url>
+            <layout>default</layout>
+        </pluginRepository>
+    </pluginRepositories>
+
 	<scm>
 		<connection>scm:git:https://github.com/mulesoft/template-gw-external-oauth2-provider.git</connection>
 		<developerConnection>scm:git:https://github.com/mulesoft/template-gw-external-oauth2-provider.git</developerConnection>
