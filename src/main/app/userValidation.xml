@@ -9,6 +9,7 @@ xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 xmlns:spring="http://www.springframework.org/schema/beans" 
 xmlns:ss="http://www.springframework.org/schema/security"
 xmlns:mule-ss="http://www.mulesoft.org/schema/mule/spring-security"
+xmlns:tls="http://www.mulesoft.org/schema/mule/tls" 
 xmlns:oauth2-provider="http://www.mulesoft.org/schema/mule/oauth2-provider"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 version="EE-3.7.0"
@@ -19,6 +20,7 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
 http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd
 http://www.mulesoft.org/schema/mule/oauth2-provider http://www.mulesoft.org/schema/mule/oauth2-provider/current/mule-oauth2-provider.xsd
 http://www.mulesoft.org/schema/mule/spring-security http://www.mulesoft.org/schema/mule/spring-security/current/mule-spring-security.xsd">
 
