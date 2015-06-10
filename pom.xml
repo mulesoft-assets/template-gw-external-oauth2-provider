@@ -13,61 +13,61 @@
 		<mule.version>3.6.2</mule.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.mule.plugin.version>1.9</maven.mule.plugin.version>
+        <mule.tools.version>1.0</mule.tools.version>
         <assembly-descriptor-version>1.0.11</assembly-descriptor-version>
         <licensePath>LICENSE_HEADER.txt</licensePath>
-        <junit.version>4.9</junit.version>
         <jdkName>JavaSE-1.7</jdkName>
         <jdk.version>1.7</jdk.version>
-        <eclipsePluginVersion>2.8</eclipsePluginVersion>
 	</properties>
 
 	<build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-install-plugin</artifactId>
-                    <version>2.3.1</version>
-                </plugin>
-                <!--This plugin's configuration is used to store Eclipse m2e settings
-                    only. It has no influence on the Maven build itself. -->
-                <plugin>
-                    <groupId>org.eclipse.m2e</groupId>
-                    <artifactId>lifecycle-mapping</artifactId>
-                    <version>1.0.0</version>
-                    <configuration>
-                        <lifecycleMappingMetadata>
-                            <pluginExecutions>
-                                <pluginExecution>
-                                    <pluginExecutionFilter>
-                                        <groupId>org.mule.tools</groupId>
-                                        <artifactId>maven-mule-plugin</artifactId>
-                                        <versionRange>[1.6,)</versionRange>
-                                        <goals>
-                                            <goal>attach-test-resources</goal>
-                                            <goal>filter-resources</goal>
-                                        </goals>
-                                    </pluginExecutionFilter>
-                                    <action>
-                                        <ignore />
-                                    </action>
-                                </pluginExecution>
-                            </pluginExecutions>
-                        </lifecycleMappingMetadata>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.mule.tools</groupId>
-                    <artifactId>maven-mule-plugin</artifactId>
-                    <version>${maven.mule.plugin.version}</version>
-                    <extensions>true</extensions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-
 		<plugins>
+			<plugin>
+				<groupId>org.mule.tools.maven</groupId>
+				<artifactId>mule-app-maven-plugin</artifactId>
+				<version>${mule.tools.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+                    <copyToAppsDirectory>true</copyToAppsDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2.1</version>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>project</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>add-resource</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>add-resource</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<directory>src/main/app/</directory>
+								</resource>
+								<resource>
+									<directory>mappings/</directory>
+								</resource>
+							<resource>
+                                    <directory>src/main/api/</directory>
+                                </resource>
+                            </resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
            <plugin>
                 <groupId>com.mycila.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
@@ -97,35 +97,6 @@
                     </execution>
                 </executions>
             </plugin>			
-			<plugin>
-				<groupId>org.mule.tools</groupId>
-				<artifactId>maven-mule-plugin</artifactId>
-				<configuration>
-					<copyToAppsDirectory>true</copyToAppsDirectory>
-					<inclusions>
-					</inclusions>
-				</configuration>
-			</plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
-                    <encoding>ISO-8859-1</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <version>${eclipsePluginVersion}</version>
-                <configuration>
-                    <!-- by default download all sources when generating project files -->
-                    <downloadSources>true</downloadSources>
-                </configuration>
-            </plugin>
-            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
@@ -136,110 +107,103 @@
                     <pushChanges>false</pushChanges>
                 </configuration>
             </plugin>
-
-            <!-- Ship project names with version -->
-			<plugin>
-				<groupId>com.google.code.maven-replacer-plugin</groupId>
-				<artifactId>replacer</artifactId>
-				<version>1.5.3</version>
-				<executions>
-					<execution>
-						<id>replace-project-name-with-version</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>replace</goal>
-						</goals>
-						<configuration>
-							<basedir>${project.basedir}</basedir>
-							<regex>true</regex>
-							<preserveDir>true</preserveDir>
-							<includes>
-								<include>mule-project.xml</include>
-							</includes>
-							<replacements>
-								<replacement>
-									<token>&lt;name&gt;.*&lt;/name&gt;</token>
-									<value>&lt;name&gt;${project.artifactId}-${project.version}&lt;/name&gt;</value>
-								</replacement>
-							</replacements>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>		
-				<executions>		
-					<execution>		
-						<phase>pre-integration-test</phase>		
-						<goals>		
-							<goal>run</goal>		
-						</goals>		
-						<configuration>		
-							<tasks>		
-								<delete>		
-									<fileset dir="${project.build.directory}" includes="*.zip" />		
-								</delete>		
-							</tasks>		
-						</configuration>		
-					</execution>		
-				</executions>		
-			</plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.2.1</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.mule.templates</groupId>
-                        <artifactId>templates-tooling-assembly-descriptor</artifactId>
-                        <version>${assembly-descriptor-version}</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>${project.artifactId}-${project.version}</finalName>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <descriptorRefs>
-                                <descriptorRef>studio-no-test-descriptor</descriptorRef>
-                            </descriptorRefs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>			            
         </plugins>		
 	</build>
-
+	<profiles>
+		<profile>
+	   		<id>release-assembly</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+		            <!-- Ship project names with version -->
+					<plugin>
+						<groupId>com.google.code.maven-replacer-plugin</groupId>
+						<artifactId>replacer</artifactId>
+						<version>1.5.3</version>
+						<executions>
+							<execution>
+								<id>replace-project-name-with-version</id>
+								<phase>validate</phase>
+								<goals>
+									<goal>replace</goal>
+								</goals>
+								<configuration>
+									<basedir>${project.basedir}</basedir>
+									<regex>true</regex>
+									<preserveDir>true</preserveDir>
+									<includes>
+										<include>mule-project.xml</include>
+									</includes>
+									<replacements>
+										<replacement>
+											<token>&lt;name&gt;.*&lt;/name&gt;</token>
+											<value>&lt;name&gt;${project.artifactId}-${project.version}&lt;/name&gt;</value>
+										</replacement>
+									</replacements>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>		
+						<executions>		
+							<execution>		
+								<phase>pre-integration-test</phase>		
+								<goals>		
+									<goal>run</goal>		
+								</goals>		
+								<configuration>		
+									<tasks>		
+										<delete>		
+											<fileset dir="${project.build.directory}" includes="*.zip" />		
+										</delete>		
+									</tasks>		
+								</configuration>		
+							</execution>		
+						</executions>		
+					</plugin>
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.mule.templates</groupId>
+                                <artifactId>templates-tooling-assembly-descriptor</artifactId>
+                                <version>${assembly-descriptor-version}</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <configuration>
+                                    <finalName>${project.artifactId}-${project.version}</finalName>
+                                    <appendAssemblyId>false</appendAssemblyId>
+                                    <descriptorRefs>
+                                        <descriptorRef>studio-no-test-descriptor</descriptorRef>
+                                    </descriptorRefs>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     <!-- Mule Dependencies -->
     <dependencies>
-        <dependency>
-            <groupId>org.mule</groupId>
-            <artifactId>mule-core</artifactId>
-            <version>${mule.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.mulesoft.muleesb.modules</groupId>
-            <artifactId>mule-module-boot-ee</artifactId>
-            <version>${mule.version}</version>
-            <scope>provided</scope>
-        </dependency>
         <!-- Xml configuration -->
-        <dependency>
-            <groupId>org.mule.modules</groupId>
-            <artifactId>mule-module-spring-config</artifactId>
-            <version>${mule.version}</version>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>com.mulesoft.muleesb</groupId>
             <artifactId>mule-core-ee</artifactId>
             <version>${mule.version}</version>
             <scope>provided</scope>
         </dependency>
+
         <!-- Xml configuration -->
         <dependency>
             <groupId>com.mulesoft.muleesb.modules</groupId>
@@ -248,33 +212,51 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Mule Transports -->
-        <dependency>
-            <groupId>org.mule.transports</groupId>
-            <artifactId>mule-transport-http</artifactId>
-            <version>${mule.version}</version>
-            <scope>provided</scope>
-        </dependency>
+		<!-- Mule Transports -->
+		<dependency>
+			<groupId>org.mule.transports</groupId>
+			<artifactId>mule-transport-file</artifactId>
+			<version>${mule.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.transports</groupId>
+			<artifactId>mule-transport-http</artifactId>
+			<version>${mule.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+        	<groupId>com.mulesoft.muleesb.transports</groupId>
+			<artifactId>mule-transport-jdbc-ee</artifactId>
+			<version>${mule.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+        	<groupId>com.mulesoft.muleesb.transports</groupId>
+			<artifactId>mule-transport-jms-ee</artifactId>
+			<version>${mule.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.transports</groupId>
+			<artifactId>mule-transport-vm</artifactId>
+			<version>${mule.version}</version>
+			<scope>provided</scope>
+		</dependency>
 
         <!-- Mule Modules -->
-        <dependency>
-            <groupId>org.mule.modules</groupId>
-            <artifactId>mule-module-client</artifactId>
-            <version>${mule.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mule.modules</groupId>
-            <artifactId>mule-module-management</artifactId>
-            <version>${mule.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mule.modules</groupId>
-            <artifactId>mule-module-scripting</artifactId>
-            <version>${mule.version}</version>
-            <scope>provided</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-module-scripting</artifactId>
+			<version>${mule.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-module-xml</artifactId>
+			<version>${mule.version}</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
     <distributionManagement>
@@ -292,32 +274,34 @@
     </distributionManagement>
 
 	<repositories>
-		<repository>
-			<id>mulesoft-releases</id>
-			<name>MuleSoft Releases Repository</name>
-			<url>https://repository.mulesoft.org/nexus/content/repositories/releases/</url>
-			<layout>default</layout>
-		</repository>
-		<repository>
-			<id>mulesoft-snapshots</id>
-			<name>MuleSoft Snapshots Repository</name>
-			<url>https://repository.mulesoft.org/nexus/content/repositories/snapshots/</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>	
-
-	<pluginRepositories>
-        <pluginRepository>
+          <repository>
+            <id>Central</id>
+            <name>Central</name>
+            <url>http://repo1.maven.org/maven2/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
             <id>mulesoft-releases</id>
             <name>MuleSoft Releases Repository</name>
-            <url>https://repository.mulesoft.org/nexus/content/repositories/releases/</url>
+            <url>http://repository.mulesoft.org/releases/</url>
             <layout>default</layout>
-        </pluginRepository>
-        <pluginRepository>
+        </repository>
+        <repository>
             <id>mulesoft-snapshots</id>
             <name>MuleSoft Snapshots Repository</name>
-            <url>https://repository.mulesoft.org/nexus/content/repositories/snapshots/</url>
+            <url>http://repository.mulesoft.org/snapshots/</url>
             <layout>default</layout>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>mulesoft-release</id>
+            <name>mulesoft release repository</name>
+            <layout>default</layout>
+            <url>http://repository.mulesoft.org/releases/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </pluginRepository>
     </pluginRepositories>
 
