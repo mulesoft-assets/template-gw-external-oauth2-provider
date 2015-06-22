@@ -77,13 +77,18 @@ Mule Studio provides you with really easy way to deploy your Template directly t
 ## Properties to be configured (With examples) <a name="propertiestobeconfigured"/>
 In order to use this Mule Anypoint Template you need to configure properties (Credentials, configurations, etc.) either in properties file or in CloudHub as Environment Variables. Detail list with examples:
 ### Application configuration
-**Application configuration**
+#### Application configuration
 + https.port `8082`
 
-**Environment related properties**
+#### Environment related properties
+
+##### Keystore
+
 + key.store.password `mule1234`
 + key.store.key.password `mule1234`
 + key.store.path `keystore.jks`
+
+##### LDAP Validation
 
 + ldap.userDn `<User DN>`
 + ldap.password `<pass>`
@@ -91,9 +96,19 @@ In order to use this Mule Anypoint Template you need to configure properties (Cr
 + ldap.user.search.filter.1 `<eg ou=people,dc=muleforge,dc=org>`
 + ldap.user.search.filter.2 `<eg (uid={0})>`
 
+##### Endpoints
+
 + validate.endpoint.path `aes/external/validate`
 + authorization.endpoint.path `aes/external/authorize`
 + access.token.endpoint.path `aes/external/access-token`
+
+##### Scopes
+
++ scopes `READ WRITE`
+
+##### Supported Grant Types
+
++ supported.grant.types `AUTHORIZATION_CODE RESOURCE_OWNER_PASSWORD_CREDENTIALS CLIENT_CREDENTIALS IMPLICIT`
 
 # Customize It!<a name="customizeit"/>
 This brief guide intends to give a high level idea of how this Anypoint Template is built and how you can change it according to your needs.
