@@ -45,9 +45,9 @@ http://www.mulesoft.org/schema/mule/api-platform-gw http://www.mulesoft.org/sche
     <oauth2-provider:config 
         name="external-oauth2-provider"
         providerName="Ping API" 
-        resourceOwnerSecurityProvider-ref="multiple-user-security-provider" 
-        clientSecurityProvider-ref="multiple-user-client-security-provider" 
-        clientStore-ref="multiple-user-client-store"
+        resourceOwnerSecurityProvider-ref="multiple-users-security-provider" 
+        clientSecurityProvider-ref="multiple-users-client-security-provider" 
+        clientStore-ref="multiple-users-client-store"
         scopes="${scopes}"
         defaultScopes="${scopes}" 
         supportedGrantTypes="${supported.grant.types}" 
