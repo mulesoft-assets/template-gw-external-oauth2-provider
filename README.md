@@ -7,14 +7,14 @@
 + [Run it!](#runit)
 	* [Running on premise](#runonopremise)
 	* [Running on Studio](#runonstudio)
-	* [Running on Mule ESB stand alone](#runonmuleesbstandalone)
+	* [Running on API Gateway stand alone](#runonmuleesbstandalone)
 	* [Running on CloudHub](#runoncloudhub)
 	* [Deploying your Anypoint Template on CloudHub](#deployingyouranypointtemplateoncloudhub)
 	* [Properties to be configured (With examples)](#propertiestobeconfigured)
 
 # License Agreement <a name="licenseagreement"/>
 Note that using this template is subject to the conditions of this [License Agreement](AnypointTemplateLicense.pdf).
-Please review the terms of the license before downloading and using this template. In short, you are allowed to use the template for free with Mule ESB Enterprise Edition, CloudHub, or as a trial in Anypoint Studio.
+Please review the terms of the license before downloading and using this template. In short, you are allowed to use the template for free with API Gateway, CloudHub, or as a trial in Anypoint Studio.
 
 # Use Case <a name="usecase"/>
 This new OAuth 2.0 Token Validation Policy allows you to use HTTPS communication and to configure a single OAuth provider for multiple APIs.
@@ -36,8 +36,8 @@ Simple steps to get API Gateway External OAuth2 Provider running.
 ## Running on premise <a name="runonopremise"/>
 In this section we detail the way you should run your Anypoint Template on your computer.
 
-### Where to Download Mule Studio and Mule ESB
-First thing to know if you are a newcomer to Mule is where to get the tools.
+### Where to Download Mule Studio and API Gateway
+First thing to know if you are a newcomer to API Gateway is where to get the tools.
 
 + You can download Mule Studio from this [Location](http://www.mulesoft.com/platform/mule-studio)
 + You can download API Gateway from this [Location](https://www.mulesoft.com/ty/dl/api-gateway)
@@ -48,7 +48,7 @@ Mule Studio offers several ways to import a project into the workspace, for inst
 + Anypoint Studio generated Deployable Archive (.zip)
 + Anypoint Studio Project from External Location
 + Maven-based Mule Project from pom.xml
-+ Mule ESB Configuration XML from External Location
++ API Gateway Configuration XML from External Location
 
 You can find a detailed description on how to do so in this [Documentation Page](http://www.mulesoft.org/documentation/display/current/Importing+and+Exporting+in+Studio).
 
