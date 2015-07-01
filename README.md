@@ -76,7 +76,7 @@ In order to use this Mule Anypoint Template you need to configure properties (Cr
 + https.port `8082`
 
 #### Environment related properties
-Follow the instructions that can be found [here] (https://developer.mulesoft.com/docs/display/current/Walkthrough+Deploy+to+Gateway)
+Follow the instructions that can be found [here](https://developer.mulesoft.com/docs/display/current/Walkthrough+Deploy+to+Gateway)
 
 ##### Keystore
 
@@ -91,14 +91,14 @@ Follow the instructions that can be found [here] (https://developer.mulesoft.com
 
 ##### Endpoints
 
-+ validate.endpoint.path `eg aes/external/validate`
-+ authorization.endpoint.path `eg aes/external/authorize`
-+ access.token.endpoint.path `eg aes/external/access-token`
++ validate.endpoint.path `aes/external/validate`
++ authorization.endpoint.path `aes/external/authorize`
++ access.token.endpoint.path `aes/external/access-token`
 
 ##### Scopes
 
-+ scopes `eg READ WRITE`
++ scopes `READ WRITE`
 
 ##### Supported Grant Types
 
-+ supported.grant.types `eg AUTHORIZATION_CODE RESOURCE_OWNER_PASSWORD_CREDENTIALS CLIENT_CREDENTIALS IMPLICIT`
++ supported.grant.types `AUTHORIZATION_CODE RESOURCE_OWNER_PASSWORD_CREDENTIALS CLIENT_CREDENTIALS IMPLICIT` (all supported types separated by spaces)
