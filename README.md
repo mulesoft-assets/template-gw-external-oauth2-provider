@@ -73,21 +73,21 @@ Mule Studio provides you with really easy way to deploy your Template directly t
 In order to use this Mule Anypoint Template you need to configure properties (Credentials, configurations, etc.) either in properties file or in CloudHub as Environment Variables. Detail list with examples:
 ### Application configuration
 #### Application configuration
-+ https.port `8082`
++ https.port `eg 8082`
 
 #### Environment related properties
 Follow the instructions that can be found [here] (https://developer.mulesoft.com/docs/display/current/Walkthrough+Deploy+to+Gateway)
 
 ##### Keystore
 
-+ key.store.password `mule1234`
-+ key.store.key.password `mule1234`
-+ key.store.path `keystore.jks`
++ key.store.password `eg mule1234`
++ key.store.key.password `eg mule1234`
++ key.store.path `eg keystore.jks`
 
 ##### Simple Validation
 
-+ admin.name `admin`
-+ admin.password `pass`
++ admin.name `eg admin`
++ admin.password `eg pass`
 
 ##### Endpoints
 
