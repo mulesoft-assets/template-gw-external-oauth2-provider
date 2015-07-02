@@ -25,7 +25,7 @@ Please review the terms of the license before downloading and using this templat
 This new OAuth 2.0 Token Validation Policy allows you to use HTTPS communication and to configure a single OAuth provider for multiple APIs.
 
 # Considerations <a name="considerations"/>
-It is assumed that you are familiar with the [policy documentation](https://developer.mulesoft.com/docs/display/current/OAuth+2.0+Provider+and+AES+OAuth+2.0+Token+Enforcement+Policies).
+It is assumed that you are familiar with the [policy documentation](http://www.mulesoft.org/documentation/display/current/External+OAuth+2.0+Token+Validation+Policy).
 
 # Run it! <a name="runit"/>
 Simple steps to get API Gateway External OAuth2 Provider running.
@@ -61,7 +61,7 @@ Once you have imported your Anypoint Template into Anypoint Studio you need to f
 Note: It is assumed that the runtime defined on your project is API Gateway 2.0.0 or greater.
 
 ### Running on API Gateway stand alone <a name="runonmuleesbstandalone"/>
-Complete all properties in one of the property files, for example in [mule.prod.properties](../master/src/main/resources/mule.prod.properties) and run your app with the corresponding environment variables to use it (additional details can be found [here](https://developer.mulesoft.com/docs/display/current/Configuring+an+API+Gateway)). To follow the example, this will be `mule.env=prod`. 
+Complete all properties in one of the property files, for example in [mule.prod.properties](../master/src/main/resources/mule.prod.properties) and run your app with the corresponding environment variables to use it (additional details can be found [here](http://www.mulesoft.org/documentation/display/current/Configuring+an+API+Gateway)). To follow the example, this will be `mule.env=prod`. 
 
 ## Running on CloudHub <a name="runoncloudhub"/>
 While [creating your application on CloudHub](http://www.mulesoft.org/documentation/display/current/Hello+World+on+CloudHub) (Or you can do it later as a next step), you need to go to Deployment > Advanced to set all environment variables detailed in **Properties to be configured** as well as the **mule.env**.
@@ -76,7 +76,7 @@ In order to use this Mule Anypoint Template you need to configure properties (Cr
 + https.port `8082`
 
 #### Environment related properties
-Follow the instructions that can be found [here] (https://developer.mulesoft.com/docs/display/current/Walkthrough+Deploy+to+Gateway)
+Follow the instructions that can be found [here] (http://www.mulesoft.org/documentation/display/current/Walkthrough+Deploy+to+Gateway)
 
 ##### Keystore
 
