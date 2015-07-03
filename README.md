@@ -17,7 +17,11 @@ Note that using this template is subject to the conditions of this [License Agre
 Please review the terms of the license before downloading and using this template. In short, you are allowed to use the template for free with API Gateway, CloudHub, or as a trial in Anypoint Studio.
 
 # Use Case <a name="usecase"/>
-This new OAuth 2.0 Token Validation Policy allows you to use HTTPS communication and to configure a single OAuth provider for multiple APIs.
+The primary responsibility of an OAuth2 provider is to control access to protected resources. Playing the part of both the Authorization server and the Resource server, the OAuth provider module hosts the protected resources and issues tokens to access protected resources without sharing the resource owner's credentials with the client applications. 
+
+Applying this template will provide you with an OAuth provider custom fitted for your organization, that can be reused by all the APIs belonging to the organization, regardless of their Business Group. You will be able to use HTTPs protocol as well as the authentication method that best meets your needs. In that regard, you will be provided with two templates: A simple 1-user-1-password security provider (great for POCs) and a production security provider that can be configured using LDAP(s). Take into account that you are not restricted to those two authentication methods; you can implement your own flavor of authorization functionality.
+
+Also, you can define different scopes on your OAuth provider, and then restrict access to your API by enforcing a token is provided, which was requested to the provider using the same scope(s) specified when protecting the API.
 
 # Considerations <a name="considerations"/>
 It is assumed that you are familiar with the [policy documentation](http://www.mulesoft.org/documentation/display/current/External+OAuth+2.0+Token+Validation+Policy).
