@@ -87,8 +87,8 @@ Follow the instructions that can be found [here](http://www.mulesoft.org/documen
 
 ##### Keystore
 
-+ key.store.password `mule1234`
-+ key.store.key.password `mule1234`
++ key.store.password `mule123`
++ key.store.key.password `mule123`
 + key.store.path `keystore.jks`
 
 ##### LDAP Validation
