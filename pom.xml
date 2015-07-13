@@ -10,11 +10,11 @@
 	<name>Template Gateway External OAuth2 Provider with LDAP Validation Anypoint Template Project</name>
 
 	<properties>
-		<mule.version>3.6.2</mule.version>
+		<mule.version>3.7.0</mule.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mule.tools.version>1.0</mule.tools.version>
-        <assembly-descriptor-version>1.0.11</assembly-descriptor-version>
+        <assembly-descriptor-version>1.0.15</assembly-descriptor-version>
         <licensePath>LICENSE_HEADER.txt</licensePath>
         <jdkName>JavaSE-1.7</jdkName>
         <jdk.version>1.7</jdk.version>
