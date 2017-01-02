@@ -16,7 +16,7 @@ xmlns:ss="http://www.springframework.org/schema/security"
 xmlns:mule-ss="http://www.mulesoft.org/schema/mule/spring-security"
 xmlns:oauth2-provider="http://www.mulesoft.org/schema/mule/oauth2-provider"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-version="EE-3.7.0"
+version="EE-3.8.3"
 xsi:schemaLocation="
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd http://www.mulesoft.org/schema/mule/https http://www.mulesoft.org/schema/mule/https/current/mule-https.xsd
 http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd

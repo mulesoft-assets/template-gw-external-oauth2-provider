@@ -5,15 +5,16 @@
 	<groupId>org.mule.templates</groupId>
 	<artifactId>template-gw-external-oauth2-provider</artifactId>
 	<packaging>mule</packaging>
-	<version>1.0.1-LDAP-SNAPSHOT</version>
+	<version>1.3.0-LDAP-SNAPSHOT</version>
 	<name>Template Gateway External OAuth2 Provider with LDAP Validation Anypoint Template Project</name>
 
 	<properties>
-		<mule.version>3.7.0</mule.version>
+		<mule.version>3.8.3</mule.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <mule.tools.version>1.0</mule.tools.version>
+        <mule.tools.version>1.2</mule.tools.version>
         <assembly-descriptor-version>1.0.15</assembly-descriptor-version>
+		<mule.module.security.version>1.6.2</mule.module.security.version>
         <licensePath>LICENSE_HEADER.txt</licensePath>
         <jdkName>JavaSE-1.7</jdkName>
         <jdk.version>1.7</jdk.version>
@@ -256,6 +257,11 @@
 			<version>${mule.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+            <groupId>com.mulesoft.security</groupId>
+            <artifactId>mule-module-security-oauth2-provider</artifactId>
+            <version>${mule.module.security.version}</version>
+        </dependency>
 	</dependencies>
 
     <distributionManagement>
@@ -270,7 +276,7 @@
             <url>http://repository-master.mulesoft.org/snapshots/</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
-    </distributionManagement>
+    </distributionManagement>	
 
 	<repositories>
           <repository>
