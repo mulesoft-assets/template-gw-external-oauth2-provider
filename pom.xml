@@ -14,7 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mule.tools.version>1.2</mule.tools.version>
         <assembly-descriptor-version>1.0.15</assembly-descriptor-version>
-		<mule.module.security.version>1.6.2</mule.module.security.version>
+		<mule.module.security.version>1.8.4</mule.module.security.version>
         <licensePath>LICENSE_HEADER.txt</licensePath>
         <jdkName>JavaSE-1.7</jdkName>
         <jdk.version>1.7</jdk.version>
