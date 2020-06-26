@@ -9,7 +9,7 @@
 	<name>Template Gateway External OAuth2 Provider Anypoint Template Project</name>
 
 	<properties>
-		<mule.version>3.8.3</mule.version>
+		<mule.version>3.9.4-20200622</mule.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <mule.tools.version>1.2</mule.tools.version>
